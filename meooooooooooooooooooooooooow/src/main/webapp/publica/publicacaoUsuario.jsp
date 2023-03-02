@@ -17,43 +17,65 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg bg-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Navbar</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Action</a></li>
-							<li><a class="dropdown-item" href="#">Another action</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="#">Something else
-									here</a></li>
-						</ul></li>
-					<li class="nav-item"><a class="nav-link disabled">Disabled</a>
-					</li>
-					<li class="nav-item"><a class="nav-link enabled"
-						href=${pageContext.request.contextPath}/publica?acao=novo>new
-							Gatito</a></li>
-				</ul>
-				<form class="d-flex" role="search">
-					<input class="form-control me-2" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
+		
+	<jsp:include page="../component/navbar.jsp" />
+
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h2>Cadastro usuário</h2>
+				<form
+					action="${pageContext.request.contextPath}/publica?acao=inserir"
+					method="post">
+
+					<div class="row mb-3">
+						<label class="col-sm-1 col-form-label">Nome</label>
+						<div class="col-sm-5">
+							<input class="form-control" type="text" name="nome">
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-1 col-form-label">CPF</label>
+						<div class="col-sm-3">
+							<input class="form-control" type="text" name="cpf">
+						</div>
+					</div>
+
+
+					<div class="row mb-3">
+						<label class="col-sm-1 col-form-label">Nascimento</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" name="nascimento">
+						</div>
+					</div>
+
+
+					<div class="row mb-3">
+						<label class="col-sm-1 col-form-label">Email</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" name="email">
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-1 col-form-label">Login</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" name="login">
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-1 col-form-label">Senha</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="password" name="password">
+						</div>
+					</div>
+
+					<input class="btn btn-primary" type="submit" value="Gravar" />
 				</form>
 			</div>
 		</div>
-	</nav>
+	</div>
 </body>
 </html>
