@@ -15,33 +15,35 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/publica")
 public class IndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public IndexController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public IndexController() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		processaRequisicao(request, response);
 	}
-	
-	private void processaRequisicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String acao = request.getParameter("acao");
 		try {
 			switch (acao) {
-			case "novo":
-				novoUsuario(request, response);
-				break;
+				case "novo":
+					novoUsuario(request, response);
+					break;
 			}
 		} catch (Exception ex) {
 			throw new ServletException(ex);
 		}
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		processaRequisicao(request, response);
 	}
-	
+
 	private void novoUsuario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("publica/publicacaoUsuario.jsp");
