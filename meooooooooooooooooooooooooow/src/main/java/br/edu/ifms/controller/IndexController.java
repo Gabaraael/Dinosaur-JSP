@@ -2,10 +2,7 @@ package br.edu.ifms.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -70,71 +67,22 @@ public class IndexController extends HttpServlet {
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("publica/publicacaoUsuario.jsp");
 		dispatcher.forward(request, response);
-	}
-	
-	private void conectar() throws SQLException {
-		if (connection == null || connection.isClosed()) {
-			connection = Conexao.getConexao();
-		}
-	}
-	
-	private void desconectar() throws SQLException {
-		if (connection != null && !connection.isClosed()) {
-			connection.close();
-		}
-	}
+	}	
 	
 	private void inserirNovoUsuario(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException  {
-		String sql = "INSERT INTO usuario (nome, cpf, data_nascimento, email, password, login, ativo)"
-				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";	
-
-		//		Connection onePunchConnection = Conexao.getConexao();
 		
 		String nome = request.getParameter("nome");
 		String cpf = request.getParameter("cpf");
-		String dataNascimento = request.getParameter("dataNascimento");
+		String dataNascimentoString = request.getParameter("dataNascimento");
+		Date dataNascimento = ManipulacaoData.convertStringToDate(dataNascimentoString);	
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String login = request.getParameter("login");
-		String ativo = request.getParameter("ativo");	
+//		String ativo = request.getParameter("ativo");	
 		
-		conectar();
+		Usuario usuario = new Usuario(nome, cpf, dataNascimento, email, password, login, true);
 		
-		PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		
-		statement.setString(1,nome);
-		statement.setString(2, cpf);
-		String dataNumero = dataNascimento;		
-		ManipulacaoData manipulacaoData = new ManipulacaoData();
-		Date data = manipulacaoData.convertStringToDate(dataNumero);		
-		statement.setDate(3, data);
-		statement.setString(4, email);
-		statement.setString(5, password);
-		statement.setString(6, login);
-		statement.setBoolean(7, ativo);
-		
-		statement.executeUpdate();
-		
-		ResultSet resultSet = statement.getGeneratedKeys();
-		long id = 0;
-		if(resultSet.next())
-			id = resultSet.getInt("id");
-		statement.close();
-
-		desconectar();
-		
-		//
-		
-//		statement.setString(1, usuario.getNome());
-//		statement.setString(2, usuario.getCpf());
-//		long dataNumero = usuario.getDataNascimento().getTime(); 
-//		Date nascimento = new Date(dataNumero);
-//		statement.setDate(3, nascimento);
-//		statement.setString(4, usuario.getEmail());
-//		statement.setString(5, usuario.getPassword());
-//		statement.setString(6, usuario.getLogin());
-//		statement.setBoolean(7, usuario.isAtivo());
 		
 //		usuario.setId(id);
 //		return usuario;
@@ -146,7 +94,7 @@ public class IndexController extends HttpServlet {
 		
 		
 		
-		if (onePunchConnection != null) {
+		if (connection != null) {
 			System.out.println("Capturei uma inserir connection, meu primeiro pokennection");
 		} else {
 

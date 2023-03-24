@@ -13,6 +13,13 @@ public class Usuario {
 	private String login;	
 	private boolean ativo;
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -56,10 +63,9 @@ public class Usuario {
 		this.ativo = ativo;
 	}
 	
-	public Usuario(Long id, String nome, String cpf, Date dataNascimento, String email, String password, String login,
+	public Usuario(String nome, String cpf, Date dataNascimento, String email, String password, String login,
 			boolean ativo) {
-		super();
-		this.id = id;
+		super();		
 		this.nome = nome;
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
@@ -71,10 +77,5 @@ public class Usuario {
 	
 	public Usuario () {
 		
-	}
-	
-	
-	
-	
-	
+	}	
 }
