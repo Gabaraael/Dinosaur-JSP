@@ -10,7 +10,6 @@ import java.sql.Statement;
 
 import br.edu.ifms.dao.util.Conexao;
 import br.edu.ifms.model.Usuario;
-import br.edu.ifms.util.ManipulacaoData;
 
 public class UsuarioDAO {
 	
@@ -24,20 +23,17 @@ public class UsuarioDAO {
 	
 	private void desconectar() throws SQLException {
 		if (connection != null && !connection.isClosed()) {
-			connection.close();
+			connection.close(); 
 		}
 	}
 	
 	public Usuario insertUser(Usuario user) throws SQLException {
-		
-		conectar();
-		
 		String sql = "INSERT INTO usuario (nome, cpf, data_nascimento, email, password, login, ativo)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";	
+		
+		conectar();
 
-		
-		PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		
+		PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);		
 		statement.setString(1,user.getNome());
 		statement.setString(2, user.getCpf());			
 		Long data = user.getDataNascimento().getTime();		
