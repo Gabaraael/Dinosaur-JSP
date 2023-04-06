@@ -17,14 +17,13 @@
 </head>
 
 <body>
-	<div class="container fixed-bottom">
+	<div class="border-top container fixed-bottom">
 		<footer
-			class="d-flex flex-wrap justify-content-between align-items-center my-4 border-top">
-			<div class="col-md-4 d-flex align-items-center">
+			class="d-flex flex-wrap justify-content-between align-items-center my-4">
+			<div class="col-md-5 d-flex align-items-center">
 				<span class="mb-3 mb-md-0 text-muted">© 2023
 					meooooooooooooooooooooooooow, Inc</span>
 			</div>
-
 			<ul
 				class="nav col-md-4 justify-content-end list-unstyled d-flex text-muted">
 				<li class="ms-3"><span>Parte do grupo "Confia"</span></li>
