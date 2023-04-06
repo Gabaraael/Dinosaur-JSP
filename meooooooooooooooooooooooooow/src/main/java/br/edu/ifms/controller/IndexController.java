@@ -53,7 +53,7 @@ public class IndexController extends HttpServlet {
 	}	
 
 	private void chamarPageNovoUsuario(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 
 		Connection onePunchConnection = Conexao.getConexao();
 		
@@ -62,9 +62,13 @@ public class IndexController extends HttpServlet {
 		} else {
 			System.out.println("Falhei meu primeiro pokennection");				
 		}
+		
+		onePunchConnection.close();
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("publica/publicacaoUsuario.jsp");
 		dispatcher.forward(request, response);
+		
+		
 	}	
 	
 	private void inserirNovoUsuario(HttpServletRequest request, HttpServletResponse response)
@@ -84,6 +88,11 @@ public class IndexController extends HttpServlet {
 		UsuarioDAO userDao = new UsuarioDAO();
 		Usuario user =  userDao.insertUser(usuario);
 		
-//		chamarPageNovoUsuario(request, response);
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("publica/publicacaoUsuario.jsp");
+//		dispatcher.forward(request, response);
+		request.setAttribute("userSubmitForm", true);
+//		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+//		rd.forward(request,response);			
+		response.sendRedirect("index.jsp");
 	}
 }
