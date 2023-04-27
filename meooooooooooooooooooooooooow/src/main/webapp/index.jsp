@@ -18,7 +18,8 @@
 </head>
 
 
-<body class="bg-dark">
+
+<body  style="background-image: url(${pageContext.request.contextPath}/assets/teste.jpg")" class="img-fluid  ">
 	<jsp:include page="/component/navbar.jsp" />
 	<h2 class="text-info" align="center">Seja bem vindo ao dinosauria</h2>
 	<jsp:include page="/component/footer.jsp" />
