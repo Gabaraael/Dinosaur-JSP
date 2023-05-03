@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--  MySQL -->
+<Context crossContext="true"> 
+ 	<Resource name="jdbc/mysql" auth="Container"
+          type="javax.sql.DataSource"
+          maxIdle="100" maxWait="30000"
+          username="root" password=""
+          driverClassName="com.mysql.jdbc.Driver"
+          url="jdbc:mysql://localhost:3306/DinoData"/>
+</Context>
+
+
+
+
+
+<!--  Postgres
+<Context crossContext="true"> 
+ 	<Resource name="jdbc/postgresql" auth="Container"
+		type="javax.sql.DataSource" minIdle="20" maxIdle="100"
+		maxWait="30000" username="postgres" password="postgres"
+		driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5432/ronaldo" />
+</Context>
+-->
+
+
